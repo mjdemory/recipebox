@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "recipebox"
+version = "0.1.0"
+description = "This is the recipe box application project from Q4 at Kenzie Academy."
+authors = ["Diarte Jeffcoat <diartesjeffcoat@icloud.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+django = "^3.1"
+
+[tool.poetry.dev-dependencies]
+autopep8 = "^1.5.4"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
