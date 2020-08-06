@@ -35,7 +35,7 @@
     {% for post in recipes %}
     <li>
       <a href="/post/{{ post.id }}/">{{ post.title }}</a> - from
-      <a href="/author/{{ post.author.name }}">{{ post.author.name }}</a>
+      <a href="/author/{{ post.author.id }}/">{{ post.author.name }}</a>
     </li>
     {% endfor %}
   </ul>

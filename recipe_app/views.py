@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from recipe_app.models import Recipe
+from recipe_app.models import Recipe, Author
 # Create your views here.
 
 
@@ -13,6 +13,7 @@ def post_detail(request, post_id):
     return render(request, "post_detail.html", {"post": my_recipe})
 
 
-def author_detail(request, author_name):
-    author_posts = Recipe.objects.filter(author__name=author_name)
-    return render(request, "author_detail.html", {"author": author_posts})
+def author_detail(request, author_id):
+    author_recipes = Recipe.objects.filter(author__id=author_id)
+    author_info = Author.objects.get(id=author_id)
+    return render(request, "author_detail.html", {"author": author_recipes, "name": author_info.name, "bio": author_info.bio})

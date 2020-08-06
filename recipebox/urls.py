@@ -21,6 +21,6 @@ from recipe_app.views import index, post_detail, author_detail
 urlpatterns = [
     path('', index),
     path('post/<int:post_id>/', post_detail),
-    path('author/<str:author_name>', author_detail),
+    path('author/<int:author_id>/', author_detail),
     path('admin/', admin.site.urls),
 ]

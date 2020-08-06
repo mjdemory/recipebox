@@ -31,7 +31,7 @@
   {% else %}
 
   <h1 style="text-align: center; color: blue;">
-    Recipes Sorted by Chef
+    Recipes Sorted by Chef {{ name }}
   </h1>
   <ul>
     {% for post in author %}
@@ -41,6 +41,9 @@
     </li>
     {% endfor %}
   </ul>
+  <hr />
+  <h4 style="font-weight: bold; text-align: center;">About {{ name }}:</h4>
+  <p style="font-style: italic;">{{ bio }}</p>
   {% endif %}
 </div>
 <div class="container">
