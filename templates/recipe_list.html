@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Body Information -->
+<div class="container">
+  <h3><strong>Latest Recipes</strong></h3>
+  <ul>
+    {% for post in recipes %}
+    <li>
+      <a href="/post/{{ post.id }}/">{{ post.title }}</a> - from
+      <a href="/author/{{ post.author.id }}/">{{ post.author.name }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+<div class="container">
+  <h6 style="text-align: center">
+    <a href="/addrecipe/">Add a new recipe!</a><br>
+    <a href="/addauthor/">Join RecipeBox as a Chef today!</a>
+  </h6>
+</div>
+
+{% endblock  %}

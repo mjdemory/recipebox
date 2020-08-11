@@ -1,7 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container">
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Add a Chef</h1>
+    <p class="lead">So you call yourself a chef in the kitchen? Let the people know who you are!</p>
+  </div>
+</div>
+
+<div class="form-group">
     <form action='/addauthor/' method="POST">
         {% csrf_token %}
         {{form.as_p}}
@@ -9,7 +16,7 @@
     </form>
 </div>
 <div class="container">
-  <h6><a href="/index/">Go Back Home</a></h6>
+  <a href="/" class="btn btn-primary" role="button">Home</a>
 </div>
 
 {% endblock  %}

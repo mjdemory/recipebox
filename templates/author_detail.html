@@ -2,28 +2,40 @@
 <!-- Body Information -->
 {% block content %}
 
-<div class="container">
+
   {% if not author %}
-  <p>We cannot find the chef you are looking for.</p>
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-4">We're Sorry!</h1>
+        <p class="lead">We cannot find the chef you are looking for. Please try again.</p>
+        <a class="btn btn-primary btn-lg" href="/" role="button">Go Back Home</a>
+      </div>
+    </div>
   {% else %}
 
-  <h1 style="text-align: center; color: blue;">
-    Recipes Sorted by Chef {{ name }}
-  </h1>
-  <ul>
-    {% for post in author %}
-    <li>
-      <a href="/post/{{ post.id }}/">{{post.title}}</a> - from
-      {{post.author.name}}
-    </li>
-    {% endfor %}
-  </ul>
-  <hr />
-  <h4 style="font-weight: bold; text-align: center;">About {{ name }}:</h4>
-  <p style="font-style: italic;">{{ bio }}</p>
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-4">About {{ name }}</h1>
+        <p class="lead">{{ bio }}</p>
+      </div>
+    </div>
+    <div class="container">
+      <h3 style="text-align: center; color: blue;">
+        Recipes by {{ name }}
+      </h3>
+      <table class="table list-group-flush table-hover">
+        <tbody>
+        {% for post in author %}
+          <tr>
+            <td><a href="/post/{{ post.id }}/">{{post.title}}</a></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
   {% endif %}
-</div>
+
 <div class="container">
-  <h6><a href="/index/">Go Back Home</a></h6>
+  <a href="/" class="btn btn-primary" role="button">Go Back Home</a>
 </div>
 {% endblock  %}

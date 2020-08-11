@@ -1,7 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container">
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Add A Recipe</h1>
+    <p class="lead">Got something in mind for the folks to try at home? Enter the recipe here!</p>
+  </div>
+</div>
+
+<div class="form-group">
     <form action='/addrecipe/' method="POST">
         {% csrf_token %}
         {{form.as_p}}
@@ -9,8 +16,8 @@
     </form>
 </div>
 <div class="container">
-  <h6 style="text-align: center"><a href="/addauthor/">New Cook? Add yourself to RecipeBox!</a></h6>
-  <h6 style="text-align: center"><a href="/index/">Go Back Home</a></h6>
+  <a href="/" class="btn btn-primary" role="button">Home</a>
+  <p><a href="/addauthor/">New Cook? Add yourself to RecipeBox!</a></p>
 </div>
 
 {% endblock  %}

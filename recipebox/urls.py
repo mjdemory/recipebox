@@ -20,8 +20,8 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.home, name="homepage"),
-    path('index/', index, name="recipe_index"),
+    path('', index, name="homepage"),
+    path('recipeindex/', index, name="recipe_index"),
     path('post/<int:post_id>/', post_detail),
     path('author/<int:author_id>/', author_detail),
     path('addrecipe/', add_recipe, name="addrecipe"),
