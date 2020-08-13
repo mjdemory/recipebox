@@ -3,7 +3,7 @@
 {% block content %}
 
 
-  {% if not author %}
+  {% if not author_info %}
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
         <h1 class="display-4">We're Sorry!</h1>
@@ -15,8 +15,8 @@
 
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
-        <h1 class="display-4">About {{ name }}</h1>
-        <p class="lead">{{ bio }}</p>
+        <h1 class="display-4">About {{ author_info.name }}</h1>
+        <p class="lead">{{ author_info.bio }}</p>
       </div>
     </div>
     <div class="container">

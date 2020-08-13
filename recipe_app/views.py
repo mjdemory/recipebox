@@ -7,7 +7,7 @@ from recipe_app.forms import AddRecipeForm, AddAuthorForm
 
 def index(request):
     my_recipes = Recipe.objects.all()
-    return render(request, "index.html", {"name": "Kenzie", "recipes": my_recipes})
+    return render(request, "index.html", {"recipes": my_recipes})
 
 
 def post_detail(request, post_id):
@@ -17,8 +17,8 @@ def post_detail(request, post_id):
 
 def author_detail(request, author_id):
     author_recipes = Recipe.objects.filter(author__id=author_id)
-    author_info = Author.objects.get(id=author_id)
-    return render(request, "author_detail.html", {"author": author_recipes, "name": author_info.name, "bio": author_info.bio})
+    author_info = Author.objects.filter(id=author_id).first()
+    return render(request, "author_detail.html", {"author": author_recipes, "author_info": author_info})
 
 
 def add_recipe(request):
