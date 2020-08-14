@@ -5,6 +5,8 @@
   <div class="container">
     <h1 class="display-4">Add A Recipe</h1>
     <p class="lead">Got something in mind for the folks to try at home? Enter the recipe here!</p>
+    <hr class="my-4">
+    <a href="/" class="btn btn-primary btn-sm" role="button">Home</a>
   </div>
 </div>
 
@@ -12,12 +14,11 @@
     <form action='/addrecipe/' method="POST">
         {% csrf_token %}
         {{form.as_p}}
-        <input type="submit" value="Submit">
+        <p><input type="submit" value="Submit"></p>
+        {% if request.user.is_staff %}
+          <p><a href="/addauthor/" class="btn btn-secondary btn-sm" role="button">Add A Chef</a></p>
+        {% endif %}
     </form>
-</div>
-<div class="container">
-  <a href="/" class="btn btn-primary" role="button">Home</a>
-  <p><a href="/addauthor/">New Cook? Add yourself to RecipeBox!</a></p>
 </div>
 
 {% endblock  %}

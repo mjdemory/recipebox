@@ -6,6 +6,12 @@
         <h1 class="display-4">Welcome to RecipeBox!</h1>
         <p class="lead">An application for finding the best recipes from the most renowed chefs in the world.</p>
     </div>
+    {% if request.user.is_authenticated %}
+        <div class="container-sm">
+            <h3 style="text-align: center; color: gray">Hello, {{ request.user.username }}!</h3>
+            <hr class="my-4">
+        </div>
+    {% endif %}
     <div class='container'>
         <h4 style="text-align: center">See the latest recipes!</h4>
         <table class="table list-group-flush table-hover">
@@ -20,11 +26,24 @@
     </div>
 
     <div class="container">
+    {% if request.user.is_staff %}
     <span style="text-align: center">
         <a href="/addrecipe/" class="btn btn-secondary" role="button">Add a Recipe!</a>
     </span>
     <span style="text-align: center">
         <a href="/addauthor/" class="btn btn-secondary" role="button">Add a Chef!</a>
     </span>
+    {% elif request.user.is_authenticated %}
+    <span style="text-align: center">
+        <a href="/addrecipe/" class="btn btn-secondary" role="button">Add a Recipe!</a>
+    </span>
+    {% else %}
+    <span style="text-align: center">
+        <a href="/addrecipe/" class="btn btn-secondary" role="button">Add a Recipe!</a>
+    </span>
+        <span style="text-align: center">
+        <a href="/addauthor/" class="btn btn-secondary" role="button">Add a Chef!</a>
+    </span>
+    {% endif %}
     </div>
 {% endblock  %}
