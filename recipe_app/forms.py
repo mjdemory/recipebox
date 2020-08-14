@@ -11,6 +11,9 @@ class AddRecipeForm(forms.Form):
 
 
 class AddAuthorForm(forms.ModelForm):
+    username = forms.CharField(max_length=240)
+    password = forms.CharField(widget=forms.PasswordInput)
+
     class Meta:
         model = Author
         fields = ['name', 'bio']
@@ -19,9 +22,3 @@ class AddAuthorForm(forms.ModelForm):
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=240)
     password = forms.CharField(widget=forms.PasswordInput)
-
-
-class SignupForm(forms.Form):
-    username = forms.CharField(max_length=240)
-    password = forms.CharField(widget=forms.PasswordInput)
-    bio = forms.CharField(widget=forms.Textarea)

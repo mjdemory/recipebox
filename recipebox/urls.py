@@ -26,7 +26,6 @@ urlpatterns = [
     path('addrecipe/', v.add_recipe, name="addrecipe"),
     path('addauthor/', v.add_author, name="addauthor"),
     path('login/', v.login_view, name="login_view"),
-    path('signup/', v.signup_view, name="signup_view"),
     path('logout/', v.logout_view, name="logout_view"),
     path('admin/', admin.site.urls),
 ]
