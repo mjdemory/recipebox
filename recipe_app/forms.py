@@ -17,9 +17,6 @@ class AddRecipeAdminForm(forms.ModelForm):
         model = Recipe
         fields = ['title', 'description', 'time_required', 'instructions']
 
-    def __init__(self):
-        pass
-
 
 class AddAuthorForm(forms.ModelForm):
     username = forms.CharField(max_length=240)
