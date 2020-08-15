@@ -7,7 +7,18 @@ class AddRecipeForm(forms.Form):
     description = forms.CharField(widget=forms.Textarea)
     time_required = forms.CharField(max_length=20)
     instructions = forms.CharField(widget=forms.Textarea)
-    # author = forms.ModelChoiceField(queryset=Author.objects.all())
+
+
+class AddRecipeAdminForm(forms.ModelForm):
+    author = forms.ModelChoiceField(
+        queryset=Author.objects.all(), required=True)
+
+    class Meta:
+        model = Recipe
+        fields = ['title', 'description', 'time_required', 'instructions']
+
+    def __init__(self):
+        pass
 
 
 class AddAuthorForm(forms.ModelForm):

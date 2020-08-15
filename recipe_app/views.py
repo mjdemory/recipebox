@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponseRedirect, reverse
 from recipe_app.models import Recipe, Author
 from recipe_app.forms import AddRecipeForm, AddAuthorForm, LoginForm
 from django.contrib.auth import login, logout, authenticate
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.models import User
 
@@ -42,6 +42,36 @@ def add_recipe(request):
 
     form = AddRecipeForm()
     return render(request, 'recipe_form.html', {'form': form})
+
+    # TESTING THIS FOR EXTRA CREDIT
+    # form = AddRecipeForm(request.POST or None)
+
+    # if request.user.is_staff:
+    #     form.fields['author'] = forms.ModelChoiceField(
+    #         queryset=Author.objects.all(), required=True)
+
+    # if form.is_valid():
+    #     if request.user.is_staff:
+    #         data = form.cleaned_data
+    #         author = form.cleaned_data('author')
+    #         Recipe.objects.create(
+    #             title=data.get('title'),
+    #             description=data.get('description'),
+    #             time_required=data.get('time_required'),
+    #             instructions=data.get('instructions'),
+    #             author=data.get('author'),
+    #         )
+    #     data = form.cleaned_data
+    #     Recipe.objects.create(
+    #         title=data.get('title'),
+    #         description=data.get('description'),
+    #         time_required=data.get('time_required'),
+    #         instructions=data.get('instructions'),
+    #         author=request.user.author,
+    #     )
+    #     return HttpResponseRedirect(reverse('homepage'))
+
+    # return render(request, 'recipe_form.html', {'form': form})
 
 
 @login_required

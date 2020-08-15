@@ -26,24 +26,11 @@
     </div>
 
     <div class="container">
-    {% if request.user.is_staff %}
-    <span style="text-align: center">
-        <a href="/addrecipe/" class="btn btn-secondary" role="button">Add a Recipe!</a>
-    </span>
-    <span style="text-align: center">
-        <a href="/addauthor/" class="btn btn-secondary" role="button">Add a Chef!</a>
-    </span>
-    {% elif request.user.is_authenticated %}
-    <span style="text-align: center">
-        <a href="/addrecipe/" class="btn btn-secondary" role="button">Add a Recipe!</a>
-    </span>
-    {% else %}
     <span style="text-align: center">
         <a href="/addrecipe/" class="btn btn-secondary" role="button">Add a Recipe!</a>
     </span>
         <span style="text-align: center">
         <a href="/addauthor/" class="btn btn-secondary" role="button">Add a Chef!</a>
     </span>
-    {% endif %}
     </div>
 {% endblock  %}
