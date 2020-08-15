@@ -1,10 +1,11 @@
 from django.shortcuts import render, HttpResponseRedirect, reverse
 from recipe_app.models import Recipe, Author
-from recipe_app.forms import AddRecipeForm, AddAuthorForm, LoginForm, AddRecipeAdminForm
+from recipe_app.forms import AddRecipeForm, AddAuthorForm, LoginForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.models import User
+from django import forms
 
 # Create your views here.
 
@@ -27,26 +28,8 @@ def author_detail(request, author_id):
 
 @login_required
 def add_recipe(request):
-    if request.user.is_staff:
-        if request.method == 'POST':
-            form = AddRecipeAdminForm(request.POST)
-            if form.is_valid():
-                data = form.cleaned_data
-                Recipe.objects.create(
-                    title=data.get('title'),
-                    description=data.get('description'),
-                    time_required=data.get('time_required'),
-                    instructions=data.get('instructions'),
-                    author=data.get('author'),
-                )
-                return HttpResponseRedirect(reverse('homepage'))
-
-        form = AddRecipeAdminForm()
-        return render(request, 'recipe_form.html', {'form': form})
-
     if request.method == 'POST':
         form = AddRecipeForm(request.POST)
-
         if form.is_valid():
             data = form.cleaned_data
             Recipe.objects.create(
@@ -54,11 +37,14 @@ def add_recipe(request):
                 description=data.get('description'),
                 time_required=data.get('time_required'),
                 instructions=data.get('instructions'),
-                author=request.user.author,
+                author=data.get('author'),
             )
             return HttpResponseRedirect(reverse('homepage'))
 
     form = AddRecipeForm()
+    if not request.user.is_staff:
+        form.fields['author'] = forms.ModelChoiceField(
+            queryset=Author.objects.filter(name=request.user.author))
     return render(request, 'recipe_form.html', {'form': form})
 
 
