@@ -21,11 +21,14 @@ from recipe_app import views as v
 urlpatterns = [
     path('', v.index, name="homepage"),
     path('recipeindex/', v.index, name="recipe_index"),
-    path('post/<int:post_id>/', v.post_detail),
+    path('post/<int:post_id>/edit/', v.recipe_edit_view), 
+    path('post/<int:post_id>/', v.post_detail, name="post_detail"),
     path('author/<int:author_id>/', v.author_detail),
     path('addrecipe/', v.add_recipe, name="addrecipe"),
     path('addauthor/', v.add_author, name="addauthor"),
     path('login/', v.login_view, name="login_view"),
     path('logout/', v.logout_view, name="logout_view"),
+    path('favorite_view/<int:fav_id>/', views.favorite_view, name="favorite"),
+    path('unfavorite_view/<int:unfav_id>/', views.unfavorite_view, name="unfavorite"),
     path('admin/', admin.site.urls),
 ]
