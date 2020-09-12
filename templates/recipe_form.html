@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Add A Recipe</h1>
+    <p class="lead">Got something in mind for the folks to try at home? Enter the recipe here!</p>
+    <hr class="my-4">
+    <a href="/" class="btn btn-primary btn-sm" role="button">Home</a>
+  </div>
+</div>
+
+<div class="form-group">
+    <form action='/addrecipe/' method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <p><input type="submit" value="Submit"></p>
+        {% if request.user.is_staff %}
+          <p><a href="/addauthor/" class="btn btn-secondary btn-sm" role="button">Add A Chef</a></p>
+        {% endif %}
+    </form>
+</div>
+
+{% endblock  %}

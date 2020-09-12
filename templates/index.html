@@ -1,42 +1,36 @@
-<!-- CSS only -->
-<link
-  rel="stylesheet"
-  href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css"
-  integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX"
-  crossorigin="anonymous"
-/>
+{% extends 'base.html' %}
 
-<!-- JS, Popper.js, and jQuery -->
-<script
-  src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-  integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-  crossorigin="anonymous"
-></script>
-<script
-  src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-  integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-  crossorigin="anonymous"
-></script>
-<script
-  src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js"
-  integrity="sha384-XEerZL0cuoUbHE4nZReLT7nx9gQrQreJekYhJD9WNWhH8nEW+0c5qq7aIo2Wl30J"
-  crossorigin="anonymous"
-></script>
+{% block content %}
+    
+    <div class="jumbotron">
+        <h1 class="display-4">Welcome to RecipeBox!</h1>
+        <p class="lead">An application for finding the best recipes from the most renowed chefs in the world.</p>
+    </div>
+    {% if request.user.is_authenticated %}
+        <div class="container-sm">
+            <h3 style="text-align: center; color: gray">Hello, {{ request.user.username }}!</h3>
+            <hr class="my-4">
+        </div>
+    {% endif %}
+    <div class='container'>
+        <h4 style="text-align: center">See the latest recipes!</h4>
+        <table class="table list-group-flush table-hover">
+            <tbody>
+                {% for post in recipes %}
+                    <tr>
+                        <td><a href="/post/{{ post.id }}/">{{ post.title }}</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
-<!-- Body Information -->
-<header>
-  <h1 style="text-align: center; font-weight: bold;">Welcome to RecipeBox</h1>
-  <h4 style="text-align: center; color: blue;">Hello, {{ name }}!!!</h4>
-</header>
-<br />
-<div class="container">
-  <h3><strong>Latest Recipes</strong></h3>
-  <ul>
-    {% for post in recipes %}
-    <li>
-      <a href="/post/{{ post.id }}/">{{ post.title }}</a> - from
-      <a href="/author/{{ post.author.id }}/">{{ post.author.name }}</a>
-    </li>
-    {% endfor %}
-  </ul>
-</div>
+    <div class="container">
+    <span style="text-align: center">
+        <a href="/addrecipe/" class="btn btn-secondary" role="button">Add a Recipe!</a>
+    </span>
+        <span style="text-align: center">
+        <a href="/addauthor/" class="btn btn-secondary" role="button">Add a Chef!</a>
+    </span>
+    </div>
+{% endblock  %}

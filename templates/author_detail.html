@@ -1,51 +1,49 @@
-<!-- CSS only -->
-<link
-  rel="stylesheet"
-  href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css"
-  integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX"
-  crossorigin="anonymous"
-/>
-
-<!-- JS, Popper.js, and jQuery -->
-<script
-  src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-  integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-  crossorigin="anonymous"
-></script>
-<script
-  src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-  integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-  crossorigin="anonymous"
-></script>
-<script
-  src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js"
-  integrity="sha384-XEerZL0cuoUbHE4nZReLT7nx9gQrQreJekYhJD9WNWhH8nEW+0c5qq7aIo2Wl30J"
-  crossorigin="anonymous"
-></script>
-
+{% extends 'base.html' %}
 <!-- Body Information -->
+{% block content %}
 
-<div class="container">
-  {% if not author %}
-  <p>We cannot find the chef you are looking for.</p>
+
+  {% if not author_info %}
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-4">We're Sorry!</h1>
+        <p class="lead">We cannot find the chef you are looking for. Please try again.</p>
+        <a class="btn btn-primary btn-lg" href="/" role="button">Go Back Home</a>
+      </div>
+    </div>
   {% else %}
 
-  <h1 style="text-align: center; color: blue;">
-    Recipes Sorted by Chef {{ name }}
-  </h1>
-  <ul>
-    {% for post in author %}
-    <li>
-      <a href="/post/{{ post.id }}/">{{post.title}}</a> - from
-      {{post.author.name}}
-    </li>
-    {% endfor %}
-  </ul>
-  <hr />
-  <h4 style="font-weight: bold; text-align: center;">About {{ name }}:</h4>
-  <p style="font-style: italic;">{{ bio }}</p>
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-4">About {{ author_info.name }}</h1>
+        <p class="lead">{{ author_info.bio }}</p>
+      </div>
+    </div>
+    <div class="container">
+      <h3 style="text-align: center; color: blue;">
+        Recipes by {{ author_info.name }}
+      </h3>
+      <table class="table list-group-flush table-hover">
+        <tbody>
+        {% for post in author %}
+          <tr>
+            <td><a href="/post/{{ post.id }}/">{{post.title}}</a></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
   {% endif %}
+<div class="container">
+  <h3 style="text-align: center; color: blue;">
+  Favorite Recipes
+  {% for Favorite in favorites%}
+  <!-- Matt Perry code -->
+  <a href="/post/{{ Favorite.id }}/">{{ Favorite.title }}</a>
+  {% endfor %}
+  </h3>
 </div>
 <div class="container">
-  <h6><a href="/">Go Back Home</a></h6>
+  <a href="/" class="btn btn-primary" role="button">Go Back Home</a>
 </div>
+{% endblock  %}
