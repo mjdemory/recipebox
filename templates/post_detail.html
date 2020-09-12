@@ -30,7 +30,8 @@
 <div class="container">
   <a href="/" class="btn btn-primary" role="button">Home</a>
   <a href="/post/{{ post.id }}/edit/">Edit</a>
-  
+  <a href="/favorite_view/{{post.id}}"><p>Favorite</p></a>
+  <a href="/unfavorite_view/{{post.id}}"><p>Unfavorite</p></a>
 </div>
 
 {% endblock  %}

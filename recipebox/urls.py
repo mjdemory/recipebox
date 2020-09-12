@@ -28,7 +28,7 @@ urlpatterns = [
     path('addauthor/', v.add_author, name="addauthor"),
     path('login/', v.login_view, name="login_view"),
     path('logout/', v.logout_view, name="logout_view"),
-    path('favorite_view/<int:fav_id>/', views.favorite_view, name="favorite"),
-    path('unfavorite_view/<int:unfav_id>/', views.unfavorite_view, name="unfavorite"),
+    path('favorite_view/<int:fav_id>/', v.favorite_view, name="favorite"),
+    path('unfavorite_view/<int:unfav_id>/', v.unfavorite_view, name="unfavorite"),
     path('admin/', admin.site.urls),
 ]

@@ -34,7 +34,15 @@
       </table>
     </div>
   {% endif %}
-
+<div class="container">
+  <h3 style="text-align: center; color: blue;">
+  Favorite Recipes
+  {% for Favorite in favorites%}
+  <!-- Matt Perry code -->
+  <a href="/post/{{ Favorite.id }}/">{{ Favorite.title }}</a>
+  {% endfor %}
+  </h3>
+</div>
 <div class="container">
   <a href="/" class="btn btn-primary" role="button">Go Back Home</a>
 </div>
